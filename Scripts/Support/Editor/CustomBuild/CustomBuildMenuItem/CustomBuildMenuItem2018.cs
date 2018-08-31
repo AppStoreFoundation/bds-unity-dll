@@ -8,7 +8,9 @@ public static class CustomBuildMenuItem
     [MenuItem("AppCoins/Android Custom Build")]
     public static void AndroidCustomBuild()
     {
-        CustomBuildSetupEnv customBuildSetup = new CustomBuildAndroidSetupEnv();
+        CustomBuildSetupEnv customBuildSetup = 
+            new CustomBuildAndroidSetupEnv(new BDSAppcoinsGameObject());
+
         CustomBuildWindow customBuildWindow = 
             ScriptableObject.CreateInstance<AndroidCustomBuildWindow>();
 

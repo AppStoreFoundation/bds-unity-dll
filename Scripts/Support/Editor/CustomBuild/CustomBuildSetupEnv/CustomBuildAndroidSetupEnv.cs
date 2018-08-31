@@ -4,8 +4,12 @@ public class CustomBuildAndroidSetupEnv : CustomBuildSetupEnv
 {
     private const string defaultUnityPackage = "com.Company.ProductName";
 
+    public CustomBuildAndroidSetupEnv(AppcoinsGameObject a) : base(a) {}
+
     internal override void Setup()
     {
+        base.Setup();
+
         // Check if the active platform is Android. If it isn't change it
         if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
         {

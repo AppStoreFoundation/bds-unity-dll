@@ -5,7 +5,7 @@
     <ProjectGuid>{16444894-AF88-4ED6-8E00-051D9605DB49}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>unity2018</RootNamespace>
-    <AssemblyName>unity-2018</AssemblyName>
+    <AssemblyName>bds-unity-2018</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

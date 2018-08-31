@@ -22,8 +22,8 @@ namespace Appcoins.Purchasing
 
         // Add aditional prodcuts to AppcoinsPurchasing. If a product is successful
         // added call successCallback if not call failCallback
-        public void FetchAdditionalProducts (HashSet<AppcoinsProduct> prodDefs, 
-                                             Action successCallback, 
+        public void FetchAdditionalProducts (List<AppcoinsProduct> prodDefs, 
+                                             Action<AppcoinsProduct> successCallback, 
                                              Action<AppcoinsInitializationFailureReason> failCallback
                                             ) 
         {
@@ -31,7 +31,7 @@ namespace Appcoins.Purchasing
             {
                 if(products.AddProduct (prodDef))
                 {
-                    successCallback();
+                    successCallback(prodDef);
                 }
 
                 else

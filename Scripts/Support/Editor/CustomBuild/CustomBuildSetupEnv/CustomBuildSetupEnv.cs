@@ -1,4 +1,14 @@
 public abstract class CustomBuildSetupEnv
 {
-    internal abstract void Setup();
+    AppcoinsGameObject appcoinsGameObject;
+
+    public CustomBuildSetupEnv(AppcoinsGameObject a)
+    {
+        appcoinsGameObject = a;
+    }
+
+    internal virtual void Setup()
+    {
+        appcoinsGameObject.CheckAppcoinsGameobject();
+    }
 }

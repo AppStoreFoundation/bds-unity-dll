@@ -21,7 +21,7 @@ namespace Appcoins.Purchasing
         //    }
         //}
 
-        public AppcoinsProductCollection(HashSet<AppcoinsProduct> prods)
+        public AppcoinsProductCollection(List<AppcoinsProduct> prods)
         {
             all = new List<AppcoinsProduct>(prods);
         }

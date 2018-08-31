@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6F5C1940-D712-4560-B0D7-44CEB9BE8727}</ProjectGuid>
+    <ProjectGuid>{4B5942C1-3222-4368-885C-85803EF9DCA3}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>unityeditor2018</RootNamespace>
-    <AssemblyName>bds-unity-editor-2018</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <RootNamespace>unityeditor5</RootNamespace>
+    <AssemblyName>bds-unity-editor-5.6</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,13 +22,13 @@
       <CustomCommands>
         <Command>
           <type>AfterBuild</type>
-          <command>chmod +x ./Scripts/Bash/Unity2018.sh</command>
+          <command>chmod +x ./Scripts/Bash/Unity5_6.sh</command>
           <workingdir>${SolutionDir}</workingdir>
           <externalConsole>True</externalConsole>
         </Command>
         <Command>
           <type>AfterBuild</type>
-          <command>./Scripts/Bash/Unity2018.sh</command>
+          <command>./Scripts/Bash/Unity5_6.sh</command>
           <workingdir>${SolutionDir}</workingdir>
           <externalConsole>True</externalConsole>
         </Command>
@@ -45,13 +45,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="UnityEditor">
-      <HintPath>..\dependencies\2018\UnityEditor.dll</HintPath>
+      <HintPath>..\dependencies\5.6\UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\dependencies\2018\UnityEngine.dll</HintPath>
+      <HintPath>..\dependencies\5.6\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="bds-unity-2018">
-      <HintPath>..\unity-2018\bin\Debug\bds-unity-2018.dll</HintPath>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\dependencies\5.6\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="bds-unity-5.6">
+      <HintPath>..\unity-5.6\bin\Debug\bds-unity-5.6.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -80,8 +83,8 @@
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildException\CustomBuildException.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildException\CustomBuildException.cs</Link>
     </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildMenuItem\CustomBuildMenuItem2018.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildMenuItem\CustomBuildMenuItem2018.cs</Link>
+    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildMenuItem\CustomBuildMenuItem5_6.cs">
+      <Link>Support\Editor\CustomBuild\CustomBuildMenuItem\CustomBuildMenuItem5_6.cs</Link>
     </Compile>
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildProjectBuild\CustomBuildGradleProjectBuild.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildProjectBuild\CustomBuildGradleProjectBuild.cs</Link>
@@ -113,6 +116,12 @@
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\CustomBuildSetupEnv.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\CustomBuildSetupEnv.cs</Link>
     </Compile>
+    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\AppcoinsGameObject.cs">
+      <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\AppcoinsGameObject.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs">
+      <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs</Link>
+    </Compile>
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildTarget\CustomBuildTargetAndroid.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildTarget\CustomBuildTargetAndroid.cs</Link>
     </Compile>
@@ -122,8 +131,11 @@
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport.cs</Link>
     </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport2018.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport2018.cs</Link>
+    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport5_6.cs">
+      <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport5_6.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\UnityVersion.cs">
+      <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\UnityVersion.cs</Link>
     </Compile>
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildWindow\AndroidCustomBuildWindow.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildWindow\AndroidCustomBuildWindow.cs</Link>
@@ -140,20 +152,11 @@
     <Compile Include="..\Scripts\Support\Editor\Utils\CustomTree.cs">
       <Link>Support\Editor\Utils\CustomTree.cs</Link>
     </Compile>
-    <Compile Include="..\Scripts\Support\Editor\Utils\Tools.cs">
-      <Link>Support\Editor\Utils\Tools.cs</Link>
-    </Compile>
     <Compile Include="..\Scripts\Support\Editor\Utils\StringExtensions.cs">
       <Link>Support\Editor\Utils\StringExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\AppcoinsGameObject.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\AppcoinsGameObject.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\UnityVersion.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\UnityVersion.cs</Link>
+    <Compile Include="..\Scripts\Support\Editor\Utils\Tools.cs">
+      <Link>Support\Editor\Utils\Tools.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

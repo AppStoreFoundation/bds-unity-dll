@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class AppcoinsConfigurationBuilder : MonoBehaviour {
 
-    public HashSet<AppcoinsProduct> products;
+    public List<AppcoinsProduct> products;
 
     private void Awake()
     {
         if (products == null)
-            products = new HashSet<AppcoinsProduct>();
+            products = new List<AppcoinsProduct>();
     }
 
     public void AddProduct(string skuID, AppcoinsProductType type)
@@ -20,7 +20,7 @@ public class AppcoinsConfigurationBuilder : MonoBehaviour {
         product.productType = type;
 
         if (products == null)
-            products = new HashSet<AppcoinsProduct>();
+            products = new List<AppcoinsProduct>();
         products.Add(product);
     }
 }

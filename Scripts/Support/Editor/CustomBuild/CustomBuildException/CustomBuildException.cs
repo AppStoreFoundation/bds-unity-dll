@@ -19,6 +19,32 @@ public class CustomBuildException : Exception
     }
 }
 
+public class InvalidUnityVersion : CustomBuildException
+{
+    const string _message = "Unity version used is not compatible with" +
+        "Appcoins Unity plugin. Please use a unity version greater than" +
+        "'5.6'";
+
+    public InvalidUnityVersion() : base(_message)
+    {
+    }
+
+    public InvalidUnityVersion(string new_message)
+        : base(new_message)
+    {
+    }
+
+    public InvalidUnityVersion(Exception inner)
+        : base(_message, inner)
+    {
+    }
+
+    public InvalidUnityVersion(string new_message,
+        Exception inner) : base(new_message, inner)
+    {
+    }
+}
+
 public class ExportProjectPathIsEqualToUnityProjectPathException : 
              CustomBuildException
 {
@@ -115,6 +141,58 @@ public class TerminalProcessFailedException : CustomBuildException
     }
 
     public TerminalProcessFailedException(string new_message,
+        Exception inner) : base(new_message, inner)
+    {
+    }
+}
+
+public class ASFAppcoinsGameObjectNotFound : CustomBuildException
+{
+    const string _message = "ASFAppcoinsUnity prefab not found at any" +
+        "open scene. You can find the prefab at {$unity_proj_path}/Assets" +
+        "/AppcoinsUnity/Prefabs/";
+
+    public ASFAppcoinsGameObjectNotFound() : base(_message)
+    {
+    }
+
+    public ASFAppcoinsGameObjectNotFound(string new_message)
+        : base(new_message)
+    {
+    }
+
+    public ASFAppcoinsGameObjectNotFound(Exception inner)
+        : base(_message, inner)
+    {
+    }
+
+    public ASFAppcoinsGameObjectNotFound(string new_message,
+        Exception inner) : base(new_message, inner)
+    {
+    }
+}
+
+public class BDSAppcoinsGameObjectNotFound : CustomBuildException
+{
+    const string _message = "AppcoinsPurchasing prefab not found at any" +
+        "open scene. You can find the prefab at {$unity_proj_path}/Assets" +
+        "/AppcoinsUnity/Prefabs/";
+
+    public BDSAppcoinsGameObjectNotFound() : base(_message)
+    {
+    }
+
+    public BDSAppcoinsGameObjectNotFound(string new_message)
+        : base(new_message)
+    {
+    }
+
+    public BDSAppcoinsGameObjectNotFound(Exception inner)
+        : base(_message, inner)
+    {
+    }
+
+    public BDSAppcoinsGameObjectNotFound(string new_message,
         Exception inner) : base(new_message, inner)
     {
     }
