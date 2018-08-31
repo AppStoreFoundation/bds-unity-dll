@@ -29,6 +29,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
     void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
+
         onInitializeSuccess = new UnityEvent();
         onInitializeFailed = new UnityEvent();
 

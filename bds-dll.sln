@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unity-2018", "unity-2018\unity-2018.csproj", "{16444894-AF88-4ED6-8E00-051D9605DB49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unity-editor-2018", "unity-editor-2018\unity-editor-2018.csproj", "{6F5C1940-D712-4560-B0D7-44CEB9BE8727}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16444894-AF88-4ED6-8E00-051D9605DB49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16444894-AF88-4ED6-8E00-051D9605DB49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16444894-AF88-4ED6-8E00-051D9605DB49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16444894-AF88-4ED6-8E00-051D9605DB49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F5C1940-D712-4560-B0D7-44CEB9BE8727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F5C1940-D712-4560-B0D7-44CEB9BE8727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F5C1940-D712-4560-B0D7-44CEB9BE8727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F5C1940-D712-4560-B0D7-44CEB9BE8727}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
