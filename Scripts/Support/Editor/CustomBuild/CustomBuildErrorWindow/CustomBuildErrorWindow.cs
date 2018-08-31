@@ -85,7 +85,8 @@ public class CustomBuildErrorWindow : EditorWindow
         int i = 0;
         while (i < allStages.Length)
         {
-            GUI.Label(new Rect(5, height, 590, 20), errorTitles[i]);
+            bool foundImage = false;
+            string resultString = "";
 
             if (i < failStageIndex)
             {
@@ -94,15 +95,20 @@ public class CustomBuildErrorWindow : EditorWindow
                     typeof(Texture2D)
                 );
 
-                GUI.DrawTexture(
-                    new Rect(
-                        errorTitles[i].Length * constMul, 
-                        height, 
-                        20, 
-                        20
-                    ), 
-                    success
-                );
+                if (success) {
+                    GUI.DrawTexture(
+                        new Rect(
+                            errorTitles[i].Length * constMul,
+                            height,
+                            20,
+                            20
+                        ),
+                        success
+                    );
+                    foundImage = true;
+                }
+
+                resultString = " SUCCEEDED";
             }
 
             else
@@ -112,17 +118,35 @@ public class CustomBuildErrorWindow : EditorWindow
                     typeof(Texture2D)
                 );
 
-                GUI.DrawTexture(
-                    new Rect(
-                        errorTitles[i].Length * constMul,
-                        height,
-                        20,
-                        20
-                    ),
-                    fail
-                );
+                if (fail) {
+                    GUI.DrawTexture(
+                        new Rect(
+                            errorTitles[i].Length * constMul,
+                            height,
+                            20,
+                            20
+                        ),
+                        fail
+                    );
+                    foundImage = true;
+                }
+
+                resultString = " FAILED";
             }
 
+            if (!foundImage) {
+                if (resultString.Equals(" SUCCEEDED")) {
+                    GUI.contentColor = Color.green;
+                } 
+                else if (resultString.Equals(" FAILED"))
+                {
+                    GUI.contentColor = Color.red;
+                }
+                GUI.Label(new Rect(5, height, 590, 20), errorTitles[i] + " " + resultString);
+                GUI.contentColor = Color.black;
+            }
+                
+            
             height += 40;
             i++;
         }
