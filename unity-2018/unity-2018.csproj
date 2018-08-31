@@ -1,0 +1,65 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16444894-AF88-4ED6-8E00-051D9605DB49}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>unity2018</RootNamespace>
+    <AssemblyName>unity-2018</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="UnityEditor">
+      <HintPath>..\dependencies\2018\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\dependencies\2018\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\dependencies\2018\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\Scripts\Store\AppcoinsProduct.cs">
+      <Link>Store\AppcoinsProduct.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Store\AppcoinsProductCollection.cs">
+      <Link>Store\AppcoinsProductCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Store\AppcoinsPurchasing.cs">
+      <Link>Store\AppcoinsPurchasing.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Store\AppcoinsStoreController.cs">
+      <Link>Store\AppcoinsStoreController.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Store\IAppcoinsStoreListerner.cs">
+      <Link>Store\IAppcoinsStoreListerner.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Store\Purchaser.cs">
+      <Link>Store\Purchaser.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Store\AppcoinsConfigurationBuilder.cs">
+      <Link>Store\AppcoinsConfigurationBuilder.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
