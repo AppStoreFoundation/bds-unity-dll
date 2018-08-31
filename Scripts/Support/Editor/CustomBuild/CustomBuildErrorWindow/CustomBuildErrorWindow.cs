@@ -144,6 +144,8 @@ public class CustomBuildErrorWindow : EditorWindow
                 }
                 GUI.Label(new Rect(5, height, 590, 20), errorTitles[i] + " " + resultString);
                 GUI.contentColor = Color.black;
+            } else {
+                GUI.Label(new Rect(5, height, 590, 20), errorTitles[i]);
             }
                 
             
