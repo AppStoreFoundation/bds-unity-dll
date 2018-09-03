@@ -11,11 +11,11 @@ public class CustomBuildUnityExport5_6 : CustomBuildUnityExport
                                      ICustomBuildTarget target) :
         base(bT, bO, target)
     {
-        rightDllLoc = Application.dataPath + "/AppcoinsUnity/Scripts/" +
-                                 "AppCoinsUnityPluginTests5_6.dll";
+        //rightDllLoc = Application.dataPath + "/AppcoinsUnity/Scripts/" +
+        //                         "AppCoinsUnityPluginTests5_6.dll";
 
-        tempDllLoc = Directory.GetParent(Application.dataPath).FullName +
-                              "/AppCoinsUnityPluginTests5_6.dll";
+        //tempDllLoc = Directory.GetParent(Application.dataPath).FullName +
+                              //"/AppCoinsUnityPluginTests5_6.dll";
     }
 
     internal override void UnityExport(BuildStage stage, string[] scenesPath,
@@ -30,16 +30,16 @@ public class CustomBuildUnityExport5_6 : CustomBuildUnityExport
             BuildTargetGroup.Android, BuildTarget.Android);
 
         // Remove AppcoinsUnityTests.dll from the project
-        File.Move(rightDllLoc, tempDllLoc);
-        AssetDatabase.Refresh();
+        //File.Move(rightDllLoc, tempDllLoc);
+        //AssetDatabase.Refresh();
 
         string s = BuildPipeline.BuildPlayer(scenesPath, containerPath, 
                                              buildTarget,
                                              buildOptions);
 
         // Add AppcoinsUnityTests.dll to the project
-        File.Move(tempDllLoc, rightDllLoc);
-        AssetDatabase.Refresh();
+        //File.Move(tempDllLoc, rightDllLoc);
+        //AssetDatabase.Refresh();
 
         // If Export failed 's' contains something.
         if (!s.Equals(""))

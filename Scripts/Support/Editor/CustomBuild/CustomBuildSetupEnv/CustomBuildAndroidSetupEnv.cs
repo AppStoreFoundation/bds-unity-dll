@@ -26,13 +26,13 @@ public class CustomBuildAndroidSetupEnv : CustomBuildSetupEnv
                 AndroidSdkVersions.AndroidApiLevel21;
         }
 
-        // Check if the bunde id is the default one and change it if it to 
-        // avoid that error
-        if (PlayerSettings.applicationIdentifier.Equals(defaultUnityPackage))
-        {
-            PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, 
-                                                    "com.aptoide.appcoins");
-        }
+        //// Check if the bunde id is the default one and change it if it to 
+        //// avoid that error
+        //if (PlayerSettings.applicationIdentifier.Equals(defaultUnityPackage))
+        //{
+        //    PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, 
+        //                                            "com.aptoide.appcoins");
+        //}
 
         // Export Project with gradle format (template)
         EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
