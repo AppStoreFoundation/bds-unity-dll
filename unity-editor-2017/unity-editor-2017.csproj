@@ -56,107 +56,17 @@
     <Reference Include="bds-unity-2017">
       <HintPath>..\unity-2017\bin\Debug\bds-unity-2017.dll</HintPath>
     </Reference>
+    <Reference Include="appcoins-unity-support-2017">
+      <HintPath>..\dependencies\2017\appcoins-unity-support-2017.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\BuildStage.cs">
-      <Link>Support\Editor\CustomBuild\BuildStage.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuild.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuild.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildEditorErrorHandler.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildEditorErrorHandler.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\ICustomBuildErrorHandler.cs">
-      <Link>Support\Editor\CustomBuild\ICustomBuildErrorHandler.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildErrorWindow\CustomBuildAndroidErrorTitles.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildErrorWindow\CustomBuildAndroidErrorTitles.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildErrorWindow\CustomBuildErrorTitles.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildErrorWindow\CustomBuildErrorTitles.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildErrorWindow\CustomBuildErrorWindow.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildErrorWindow\CustomBuildErrorWindow.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildException\CustomBuildException.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildException\CustomBuildException.cs</Link>
-    </Compile>
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildMenuItem\CustomBuildMenuItem2017.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildMenuItem\CustomBuildMenuItem2017.cs</Link>
     </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildProjectBuild\CustomBuildGradleProjectBuild.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildProjectBuild\CustomBuildGradleProjectBuild.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildProjectBuild\CustomBuildProjectBuild.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildProjectBuild\CustomBuildProjectBuild.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildProjectInstall\CustomBuildAdbProjectInstall.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildProjectInstall\CustomBuildAdbProjectInstall.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildProjectInstall\CustomBuildProjectInstall.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildProjectInstall\CustomBuildProjectInstall.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildProjectRun\CustomBuildAdbProjectRun.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildProjectRun\CustomBuildAdbProjectRun.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildProjectRun\CustomBuildProjectRun.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildProjectRun\CustomBuildProjectRun.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSelectScenes\SceneToExport.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildSelectScenes\SceneToExport.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSelectScenes\SelectScenes.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildSelectScenes\SelectScenes.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\CustomBuildAndroidSetupEnv.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\CustomBuildAndroidSetupEnv.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\CustomBuildSetupEnv.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\CustomBuildSetupEnv.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\AppcoinsGameObject.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\AppcoinsGameObject.cs</Link>
-    </Compile>
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildTarget\CustomBuildTargetAndroid.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildTarget\CustomBuildTargetAndroid.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildTarget\ICustomBuildTarget.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildTarget\ICustomBuildTarget.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport2017.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport2017.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\UnityVersion.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\UnityVersion.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildWindow\AndroidCustomBuildWindow.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildWindow\AndroidCustomBuildWindow.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildWindow\CustomBuildWindow.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildWindow\CustomBuildWindow.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\Terminal\BashUtils.cs">
-      <Link>Support\Editor\Terminal\BashUtils.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\Utils\AppcoinsStartup.cs">
-      <Link>Support\Editor\Utils\AppcoinsStartup.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\Utils\CustomTree.cs">
-      <Link>Support\Editor\Utils\CustomTree.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\Utils\StringExtensions.cs">
-      <Link>Support\Editor\Utils\StringExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Scripts\Support\Editor\Utils\Tools.cs">
-      <Link>Support\Editor\Utils\Tools.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -24,7 +24,7 @@ public class BDSAppcoinsGameObject : AppcoinsGameObject
         bdsGameObject = foundObjects[0];
     }
 
-    internal override void CheckAppcoinsGameobject()
+    public override void CheckAppcoinsGameobject()
     {
         string newLine = 
             appcoinsNameNewLine.Replace(toReplace, 
