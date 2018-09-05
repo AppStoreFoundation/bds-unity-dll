@@ -56,8 +56,8 @@
     <Reference Include="bds-unity-5.6">
       <HintPath>..\unity-5.6\bin\Debug\bds-unity-5.6.dll</HintPath>
     </Reference>
-    <Reference Include="appcoins-unity-support-5_6">
-      <HintPath>..\dependencies\5.6\appcoins-unity-support-5_6.dll</HintPath>
+    <Reference Include="AppCoinsUnitySupport5_6">
+      <HintPath>..\dependencies\5.6\AppCoinsUnitySupport5_6.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -53,8 +53,8 @@
     <Reference Include="bds-unity-2018">
       <HintPath>..\unity-2018\bin\Debug\bds-unity-2018.dll</HintPath>
     </Reference>
-    <Reference Include="appcoins-unity-support-2018">
-      <HintPath>..\dependencies\2018\appcoins-unity-support-2018.dll</HintPath>
+    <Reference Include="AppCoinsUnitySupport2018">
+      <HintPath>..\dependencies\2018\AppCoinsUnitySupport2018.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
