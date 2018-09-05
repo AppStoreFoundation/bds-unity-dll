@@ -27,6 +27,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
     private AppcoinsPurchasing _appcoinsPurchasing;
     private AppcoinsConfigurationBuilder _builder;
 
+    private string _pendingPurchaseSkuID;
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -73,6 +75,14 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
     public void BuyProductID(string productId)
     {
+        //Check if wallet is installed
+        if (!_appcoinsPurchasing.HasWalletInstalled()) {
+            SetStatus("BuyProductID: FAIL. Not purchasing product, no wallet app found on device!");
+            _appcoinsPurchasing.PromptWalletInstall();
+            _pendingPurchaseSkuID = productId;
+            return;
+        }
+
         // If Purchasing has been initialized ...
         if (IsInitialized())
         {
@@ -114,7 +124,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         {
             // ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or
             // retrying initiailization.
-            SetStatus("BuyProductID FAIL. Not initialized.");
+            SetStatus("BuyProductID FAIL. Not initialized. Trying to initialize now");
+            InitializePurchasing();
         }
     }
 
@@ -142,6 +153,12 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
         // Overall Purchasing system, configured with products for this application.
         m_StoreController = controller;
+
+        if (_pendingPurchaseSkuID != null && !_pendingPurchaseSkuID.Equals("")) {
+            SetStatus("OnInitialized: PASS! Resuming pending purchase of: " + _pendingPurchaseSkuID);
+            BuyProductID(_pendingPurchaseSkuID);
+            _pendingPurchaseSkuID = "";
+        }
     }
 
 

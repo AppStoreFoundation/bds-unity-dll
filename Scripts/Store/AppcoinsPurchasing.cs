@@ -56,6 +56,8 @@ namespace Appcoins.Purchasing
         // We can only get one argument from java function calls so we return the error instead of the skuID
         private AppcoinsProduct _currentPurchaseProduct;
 
+        private bool _hasWallet;
+
         //  Create an instance of this class. Add an AppcoinsStore listener and
         //  get products definitions from ConfigurationBuilder
         public void Initialize(IAppcoinsStoreListener listener, AppcoinsConfigurationBuilder builder)
@@ -93,6 +95,14 @@ namespace Appcoins.Purchasing
         public void OnInitializeSuccess()
         {
             _listener.OnInitialized(_controller);
+        }
+
+        public bool HasWalletInstalled() {
+            return _class.CallStatic<bool>("hasWalletInstalled");
+        }
+
+        public void PromptWalletInstall() {
+            _class.CallStatic("promptWalletInstall");
         }
 
         public void OnInitializeFail(string error)
