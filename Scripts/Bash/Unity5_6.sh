@@ -1,7 +1,7 @@
-#mkdir -p ../bds-unity-plugin-5.6/Appcoins\ Unity/Assets/AppcoinsUnity/Scripts
-#mkdir -p ../AppcoinsUnityPlugin5_6/Appcoins\ Unity/Assets/AppcoinsUnity/Scripts/Editor
-#cp ./AppCoinsUnityPlugin5_6/bin/Debug/AppCoinsUnityPlugin5_6.dll ../AppcoinsUnityPlugin5_6/Appcoins\ Unity/Assets/AppcoinsUnity/Scripts
-#cp ./AppCoinsUnityPluginTests5_6/bin/Debug/AppCoinsUnityPluginTests5_6.dll ../AppcoinsUnityPlugin5_6/Appcoins\ Unity/Assets/AppcoinsUnity/Scripts
-#cp ./AppCoinsUnityPluginEditor5_6/bin/Debug/AppCoinsUnityPluginEditor5_6.dll ../AppcoinsUnityPlugin5_6/Appcoins\ Unity/Assets/AppcoinsUnity/Scripts/Editor
-#cp ./Scripts/ToCopy/* ../AppcoinsUnityPlugin5_6/Appcoins\ Unity/Assets/AppcoinsUnity/Scripts
-#cp ./Scripts/ToCopy/Editor/* ../AppcoinsUnityPlugin5_6/Appcoins\ Unity/Assets/AppcoinsUnity/Scripts/Editor
+mkdir -p ../bds-unity-plugin-5_6/AppcoinsUnityPlugin/Assets/AppcoinsUnity/Scripts
+mkdir -p ../bds-unity-plugin-5_6/AppcoinsUnityPlugin/Assets/AppcoinsUnity/Scripts/Editor
+cp ./unity-5.6/bin/Debug/bds-unity-5.6.dll ../bds-unity-plugin-5_6/AppcoinsUnityPlugin/Assets/AppcoinsUnity/Scripts
+cp ./unity-editor-5.6/bin/Debug/bds-unity-editor-5.6.dll ../bds-unity-plugin-5_6/AppcoinsUnityPlugin/Assets/AppcoinsUnity/Scripts/Editor
+cp ./unity-editor-5.6/bin/Debug/appcoins-unity-support-5_6.dll ../bds-unity-plugin-5_6/AppcoinsUnityPlugin/Assets/AppcoinsUnity/Scripts/Editor
+cp ./Scripts/ToCopy/* ../bds-unity-plugin-5_6/AppcoinsUnityPlugin/Assets/AppcoinsUnity/Scripts
+cp ./Scripts/ToCopy/Editor/* ../bds-unity-plugin-5_6/AppcoinsUnityPlugin/Assets/AppcoinsUnity/Scripts/Editor
