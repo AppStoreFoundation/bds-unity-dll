@@ -95,6 +95,14 @@ namespace Appcoins.Purchasing
             _listener.OnInitialized(_controller);
         }
 
+        public bool HasWalletInstalled() {
+            return _class.CallStatic<bool>("hasWalletInstalled");
+        }
+
+        public void PromptWalletInstall() {
+            _class.CallStatic("promptWalletInstall");
+        }
+
         public void OnInitializeFail(string error)
         {
             Debug.Log("Called OnInitializeFail with reaason " + error);
