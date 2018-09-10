@@ -80,6 +80,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
             SetStatus("BuyProductID: FAIL. Not purchasing product, no wallet app found on device!");
             _appcoinsPurchasing.PromptWalletInstall();
             _pendingPurchaseSkuID = productId;
+
+            m_StoreController = null; //To force reinitialization
             return;
         }
 
