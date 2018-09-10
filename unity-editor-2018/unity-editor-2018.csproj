@@ -53,8 +53,8 @@
     <Reference Include="bds-unity-2018">
       <HintPath>..\unity-2018\bin\Debug\bds-unity-2018.dll</HintPath>
     </Reference>
-    <Reference Include="AppCoinsUnitySupport2018">
-      <HintPath>..\dependencies\2018\AppCoinsUnitySupport2018.dll</HintPath>
+    <Reference Include="AppCoinsUnitySupport">
+      <HintPath>..\dependencies\2018\AppCoinsUnitySupport.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +64,9 @@
     </Compile>
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\asf-unity-dll\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport2018.cs">
+      <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport2018.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

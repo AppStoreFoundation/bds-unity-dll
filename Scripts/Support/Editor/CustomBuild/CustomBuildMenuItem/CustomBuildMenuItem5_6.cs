@@ -13,7 +13,7 @@ public static class CustomBuildMenuItem
             ScriptableObject.CreateInstance<AndroidCustomBuildWindow>();
 
         CustomBuildUnityExport customBuildUnityExport =
-            GetCustomBuildUnityExport5_6();
+            GetCustomBuildUnityExport2017();
 
         CustomBuildProjectBuild customBuildProjectBuild = 
             new CustomBuildGradleProjectBuild();
@@ -36,24 +36,24 @@ public static class CustomBuildMenuItem
         c.RunProcess();
     }
 
-    private static CustomBuildUnityExport GetCustomBuildUnityExport5_6()
-    {
-        BuildTarget bT = BuildTarget.Android;
-        BuildOptions bO = BuildOptions.AcceptExternalModificationsToPlayer;
-        ICustomBuildTarget target = new CustomBuildTargetAndroid();
-
-        return new CustomBuildUnityExport5_6(bT, bO, target);
-    }
-
-    //private static CustomBuildUnityExport GetCustomBuildUnityExport2017()
+    //private static CustomBuildUnityExport GetCustomBuildUnityExport5_6()
     //{
     //    BuildTarget bT = BuildTarget.Android;
-    //    BuildTargetGroup bG = BuildTargetGroup.Android;
     //    BuildOptions bO = BuildOptions.AcceptExternalModificationsToPlayer;
     //    ICustomBuildTarget target = new CustomBuildTargetAndroid();
 
-    //    return new CustomBuildUnityExport2017(bT, bO, bG, target);
+    //    return new CustomBuildUnityExport5_6(bT, bO, target);
     //}
+
+    private static CustomBuildUnityExport GetCustomBuildUnityExport2017()
+    {
+        BuildTarget bT = BuildTarget.Android;
+        BuildTargetGroup bG = BuildTargetGroup.Android;
+        BuildOptions bO = BuildOptions.AcceptExternalModificationsToPlayer;
+        ICustomBuildTarget target = new CustomBuildTargetAndroid();
+
+        return new CustomBuildUnityExport2017OrLower(bT, bG, bO, target);
+    }
 
     //private static CustomBuildUnityExport GetCustomBuildUnityExport2018()
     //{

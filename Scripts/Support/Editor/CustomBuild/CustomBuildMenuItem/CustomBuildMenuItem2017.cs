@@ -52,7 +52,7 @@ public static class CustomBuildMenuItem
         BuildOptions bO = BuildOptions.AcceptExternalModificationsToPlayer;
         ICustomBuildTarget target = new CustomBuildTargetAndroid();
 
-        return new CustomBuildUnityExport2017(bT, bO, bG, target);
+        return new CustomBuildUnityExport2017OrLower(bT, bG, bO, target);
     }
 
     //private static CustomBuildUnityExport GetCustomBuildUnityExport2018()

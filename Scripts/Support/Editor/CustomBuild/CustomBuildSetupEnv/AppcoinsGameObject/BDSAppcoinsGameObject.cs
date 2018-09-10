@@ -7,11 +7,6 @@ public class BDSAppcoinsGameObject : AppcoinsGameObject
     private const string appcoinsNameNewLine = "resValue \"string\", " +
         "\"APPCOINS_PREFAB\", \"{0}\"";
 
-    public BDSAppcoinsGameObject()
-    {
-        FindAppcoinsGameObject();
-    }
-
     private void FindAppcoinsGameObject()
     {
         var foundObjects = Resources.FindObjectsOfTypeAll<AppcoinsPurchasing>();
@@ -26,6 +21,8 @@ public class BDSAppcoinsGameObject : AppcoinsGameObject
 
     public override void CheckAppcoinsGameobject()
     {
+        FindAppcoinsGameObject();
+
         string newLine = 
             appcoinsNameNewLine.Replace(toReplace, 
                                         bdsGameObject.gameObject.name);
