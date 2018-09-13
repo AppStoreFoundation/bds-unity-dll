@@ -28,6 +28,10 @@ namespace Appcoins.Purchasing
         Unknown
     }
  
+    public interface IPayloadValidator {
+        bool IsValidPayload(string payload);
+    }
+
     public class AppcoinsPurchasing : MonoBehaviour
     {
         public const string APPCOINS_PREFAB = "AppcoinsPurchasing";
@@ -56,6 +60,8 @@ namespace Appcoins.Purchasing
         // We can only get one argument from java function calls so we return the error instead of the skuID
         private AppcoinsProduct _currentPurchaseProduct;
 
+        private IPayloadValidator _customPayloadValidator;
+
         //  Create an instance of this class. Add an AppcoinsStore listener and
         //  get products definitions from ConfigurationBuilder
         public void Initialize(IAppcoinsStoreListener listener, AppcoinsConfigurationBuilder builder)
@@ -81,7 +87,7 @@ namespace Appcoins.Purchasing
             _class = new AndroidJavaClass(JAVA_CLASS_NAME);
 
             //Setup sdk
-            _class.CallStatic("setDeveloperAddress",_developerWalletAddress);
+            _class.CallStatic("setDeveloperAddress", _developerWalletAddress);
             _class.CallStatic("setDeveloperBDSPublicKey", _developerBDSPublicKey);
             _class.CallStatic("setLogging", _shouldLog);
 
@@ -229,9 +235,17 @@ namespace Appcoins.Purchasing
             return reason;
         }
 
+        public void SetupCustomValidator(IPayloadValidator customValidator) {
+            _customPayloadValidator = customValidator;
+        }
+
         bool IsValidPayload(string payload) {
-            Debug.Log("Validating payload " + payload);
-            return true;
+            if (_customPayloadValidator != null) {
+                return _customPayloadValidator.IsValidPayload(payload);
+            } else {
+                Debug.Log("Validating payload " + payload);
+                return true;
+            }
         }
 
         public void AskForPayloadValidation(string payload) {

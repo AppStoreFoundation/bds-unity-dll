@@ -57,8 +57,14 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
             return;
         }
 
-        _appcoinsPurchasing.Initialize(this, _builder);
         SetStatus("UnityPurchasing initializing.");
+        if (Application.isEditor) {
+            OnInitialized(null);
+        } else {
+            _appcoinsPurchasing.Initialize(this, _builder);    
+        }
+
+
     }
 
     void SetStatus(string status) {
@@ -75,60 +81,70 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
     public void BuyProductID(string productId)
     {
-        //Check if wallet is installed
-        if (!_appcoinsPurchasing.HasWalletInstalled()) {
-            SetStatus("BuyProductID: FAIL. Not purchasing product, no wallet app found on device!");
-            _appcoinsPurchasing.PromptWalletInstall();
-            _pendingPurchaseSkuID = productId;
+        if (Application.isEditor) {
+            AppcoinsProduct product = new AppcoinsProduct();
+            product.skuID = productId;
+            ProcessPurchase(product);
 
-            m_StoreController = null; //To force reinitialization
-            return;
-        }
-
-        // If Purchasing has been initialized ...
-        if (IsInitialized())
-        {
-            // ... look up the Product reference with the general product identifier and the Purchasing
-            // system's products collection.
-            AppcoinsProduct product = m_StoreController.products.WithID(productId);
-
-             //If the look up found a product for this device's store and that product is ready to be sold ...
-            if (product != null)
+        } else {
+            //Check if wallet is installed
+            if (!_appcoinsPurchasing.HasWalletInstalled())
             {
-                if (product.productType == AppcoinsProductType.NonConsumable && OwnsProduct(productId)) {
-                    OnPurchaseFailed(product, AppcoinsPurchaseFailureReason.DuplicateTransaction);
-                    SetStatus("BuyProductID: FAIL. Not purchasing product, non-consumable is already owned!");
-                    return;
+                SetStatus("BuyProductID: FAIL. Not purchasing product, no wallet app found on device!");
+                _appcoinsPurchasing.PromptWalletInstall();
+                _pendingPurchaseSkuID = productId;
+
+                m_StoreController = null; //To force reinitialization
+                return;
+            }
+
+            // If Purchasing has been initialized ...
+            if (IsInitialized())
+            {
+                // ... look up the Product reference with the general product identifier and the Purchasing
+                // system's products collection.
+                AppcoinsProduct product = m_StoreController.products.WithID(productId);
+
+                //If the look up found a product for this device's store and that product is ready to be sold ...
+                if (product != null)
+                {
+                    if (product.productType == AppcoinsProductType.NonConsumable && OwnsProduct(productId))
+                    {
+                        OnPurchaseFailed(product, AppcoinsPurchaseFailureReason.DuplicateTransaction);
+                        SetStatus("BuyProductID: FAIL. Not purchasing product, non-consumable is already owned!");
+                        return;
+                    }
+
+                    SetStatus(string.Format("Purchasing product asychronously: '{0}'", product.skuID));
+                    // ... buy the product. Expect a response either through ProcessPurchase or OnPurchaseFailed
+                    // asynchronously.
+
+
+                    /* TODO: for security, generate your payload here for verification. See the comments on
+                     *        verifyDeveloperPayload() for more info. Since this is a SAMPLE, we just use
+                     *        an empty string, but on a production app you should carefully generate this.
+                     * TODO: On this payload the developer's wallet address must be added, or the purchase does NOT work.
+                     */
+                    string payload = "";
+                    m_StoreController.InitiatePurchase(product, payload);
                 }
-
-                SetStatus(string.Format("Purchasing product asychronously: '{0}'", product.skuID));
-                // ... buy the product. Expect a response either through ProcessPurchase or OnPurchaseFailed
-                // asynchronously.
-
-
-                /* TODO: for security, generate your payload here for verification. See the comments on
-                 *        verifyDeveloperPayload() for more info. Since this is a SAMPLE, we just use
-                 *        an empty string, but on a production app you should carefully generate this.
-                 * TODO: On this payload the developer's wallet address must be added, or the purchase does NOT work.
-                 */
-                string payload = "";
-                m_StoreController.InitiatePurchase(product, payload);
+                // Otherwise ...
+                else
+                {
+                    // ... report the product look-up failure situation
+                    SetStatus("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
+                }
             }
             // Otherwise ...
             else
             {
-                // ... report the product look-up failure situation
-                SetStatus("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
+                // ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or
+                // retrying initiailization.
+                SetStatus("BuyProductID FAIL. Not initialized. Trying to initialize now");
+                InitializePurchasing();
             }
         }
-        // Otherwise ...
-        else
-        {
-            // ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or
-            // retrying initiailization.
-            SetStatus("BuyProductID FAIL. Not initialized. Trying to initialize now");
-            InitializePurchasing();
-        }
+
     }
 
     bool OwnsProduct(string skuID) {

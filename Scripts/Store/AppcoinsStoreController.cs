@@ -49,7 +49,7 @@ namespace Appcoins.Purchasing
         public void InitiatePurchase (string productId, string payload)
         {
             AppcoinsProduct prod = products.WithID(productId);
-            InitiatePurchase (prod, "");
+            InitiatePurchase (prod, payload);
         }
 
         public void InitiatePurchase (AppcoinsProduct prod)
