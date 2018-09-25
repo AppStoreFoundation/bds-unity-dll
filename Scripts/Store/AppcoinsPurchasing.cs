@@ -68,10 +68,10 @@ namespace Appcoins.Purchasing
         {
             try
             {
-                CreateAndSetupJavaBind();
-
                 _listener = listener;
                 _controller = new AppcoinsStoreController(this, builder);
+
+                CreateAndSetupJavaBind();
             }
             // Catch specific errors and then call OnInitializesFail
             catch (System.Exception e)
