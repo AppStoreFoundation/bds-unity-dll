@@ -28,6 +28,6 @@ public class BDSAppcoinsGameObject : AppcoinsGameObject
                                         bdsGameObject.gameObject.name);
 
         Tools.ChangeLineInFile(mainTemplatePath, mainTemplateVarName,
-                               mainTemplateContainers, newLine, numTimes);
+                               mainTemplateContainers, newLine);
     }
 }
