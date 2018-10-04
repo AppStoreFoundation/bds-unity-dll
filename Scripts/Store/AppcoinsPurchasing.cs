@@ -123,7 +123,7 @@ namespace Appcoins.Purchasing
 
             if (errorStr.Contains("Problem setting up in-app billing"))
             {
-                reason = AppcoinsInitializationFailureReason.PurchasingUnavailable;
+                reason = AppcoinsInitializationFailureReason.AppNotKnown;
             }
 
             return reason;
