@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EDF10599-252D-456F-B9F4-0579E946E9FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>unityeditor2017</RootNamespace>
+    <AssemblyName>bds-unity-editor-2017</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>AfterBuild</type>
+          <command>chmod +x ./Scripts/Bash/Unity2017.sh</command>
+          <workingdir>${SolutionDir}</workingdir>
+          <externalConsole>True</externalConsole>
+        </Command>
+        <Command>
+          <type>AfterBuild</type>
+          <command>./Scripts/Bash/Unity2017.sh</command>
+          <workingdir>${SolutionDir}</workingdir>
+          <externalConsole>True</externalConsole>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="UnityEditor">
+      <HintPath>..\dependencies\2017\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\dependencies\2017\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\dependencies\2017\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="bds-unity-2017">
+      <HintPath>..\unity-2017\bin\Debug\bds-unity-2017.dll</HintPath>
+    </Reference>
+    <Reference Include="AppCoinsUnitySupport">
+      <HintPath>..\dependencies\2017\AppCoinsUnitySupport.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildMenuItem\CustomBuildMenuItem2017.cs">
+      <Link>Support\Editor\CustomBuild\CustomBuildMenuItem\CustomBuildMenuItem2017.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs">
+      <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\asf-unity-dll\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport_2017_OR_LOWER.cs">
+      <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport_2017_OR_LOWER.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Support\Editor\Migration\MigrationHelper.cs">
+      <Link>Support\Editor\Migration\MigrationHelper.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
