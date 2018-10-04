@@ -71,6 +71,9 @@
     <Compile Include="..\..\asf-unity-dll\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport_2017_OR_LOWER.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport_2017_OR_LOWER.cs</Link>
     </Compile>
+    <Compile Include="..\Scripts\Support\Editor\Migration\MigrationHelper.cs">
+      <Link>Support\Editor\Migration\MigrationHelper.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
