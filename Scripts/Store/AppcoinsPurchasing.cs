@@ -13,7 +13,8 @@ namespace Appcoins.Purchasing
     {
         PurchasingUnavailable,
         NoProductsAvailable,
-        AppNotKnown
+        AppNotKnown,
+        WalletNotInstalled,
     }
 
     public enum AppcoinsPurchaseFailureReason
@@ -125,7 +126,10 @@ namespace Appcoins.Purchasing
         AppcoinsInitializationFailureReason InitializationFailureReasoFromString(string errorStr) {
             AppcoinsInitializationFailureReason reason = AppcoinsInitializationFailureReason.PurchasingUnavailable;
 
-            if (errorStr.Contains("Problem setting up in-app billing"))
+            if (errorStr.Contains("Billing service unavailable on device"))
+            {
+                reason = AppcoinsInitializationFailureReason.WalletNotInstalled;
+            } else if (errorStr.Contains("Error checking for billing v3 support."))
             {
                 reason = AppcoinsInitializationFailureReason.AppNotKnown;
             }
