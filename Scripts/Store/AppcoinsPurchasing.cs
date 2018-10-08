@@ -45,6 +45,9 @@ namespace Appcoins.Purchasing
         [SerializeField]
         private bool _shouldLog;
 
+        [SerializeField]
+        private bool _useMainNet = true;
+
         private AndroidJavaClass _class;
         private AndroidJavaObject instance { get { return _class.GetStatic<AndroidJavaObject>("instance"); } }
 
@@ -90,6 +93,7 @@ namespace Appcoins.Purchasing
             _class.CallStatic("setDeveloperAddress", _developerWalletAddress);
             _class.CallStatic("setDeveloperBDSPublicKey", _developerBDSPublicKey);
             _class.CallStatic("setLogging", _shouldLog);
+            _class.CallStatic("setUseMainNet", _useMainNet);
 
             //start sdk
             _class.CallStatic("start");
