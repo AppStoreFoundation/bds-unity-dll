@@ -61,6 +61,12 @@
     <Compile Include="..\Scripts\Store\Purchaser.cs">
       <Link>Store\Purchaser.cs</Link>
     </Compile>
+    <Compile Include="..\Scripts\Support\VersionReporter.cs">
+      <Link>VersionReporter.cs</Link>
+    </Compile>
+    <Compile Include="..\Scripts\Support\BDS_VersionReporter.cs">
+      <Link>BDS_VersionReporter.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

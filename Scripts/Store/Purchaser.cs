@@ -29,6 +29,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
     private string _pendingPurchaseSkuID;
 
+    private VersionReporter _versionReporter;
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -40,6 +42,15 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         onPurchaseFailed = new PurchaseEvent();
 
         _builder = new AppcoinsConfigurationBuilder();
+
+        _versionReporter = GetComponent<VersionReporter>();
+        if (_versionReporter == null)
+        {
+            Debug.LogError("Failed initializing! Plugin prefab is missing BDS VersionReporter. Please use the unmodified version of the prefab.");
+            return;
+        }
+
+        _versionReporter.LogVersionDetails();
     }
 
     public void AddProduct(string skuID, AppcoinsProductType type) {

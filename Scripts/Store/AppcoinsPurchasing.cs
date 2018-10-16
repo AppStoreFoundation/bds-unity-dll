@@ -28,7 +28,7 @@ namespace Appcoins.Purchasing
         DuplicateTransaction,
         Unknown
     }
- 
+
     public interface IPayloadValidator {
         bool IsValidPayload(string payload);
     }
@@ -36,7 +36,7 @@ namespace Appcoins.Purchasing
     public class AppcoinsPurchasing : MonoBehaviour
     {
         public const string APPCOINS_PREFAB = "AppcoinsPurchasing";
-        
+
         [SerializeField]
         private string _developerWalletAddress;
 
@@ -45,8 +45,8 @@ namespace Appcoins.Purchasing
 
         [SerializeField]
         private bool _shouldLog;
-
-        [SerializeField]
+         
+        //[SerializeField]
         private bool _useMainNet = true;
 
         private AndroidJavaClass _class;
@@ -228,10 +228,10 @@ namespace Appcoins.Purchasing
                 //+ "-1009:Subscriptions not available/"
                 //+ "-1010:Invalid consumption attempt").split("/");
 
-            if (error.IndexOf("User cancelled", StringComparison.OrdinalIgnoreCase) != -1) 
+            if (error.IndexOf("User cancelled", StringComparison.OrdinalIgnoreCase) != -1)
             {
                 reason = AppcoinsPurchaseFailureReason.UserCancelled;
-            } 
+            }
             else if (error.IndexOf("Unknown error", StringComparison.OrdinalIgnoreCase) != -1)
             {
                 reason = AppcoinsPurchaseFailureReason.Unknown;
@@ -276,4 +276,3 @@ namespace Appcoins.Purchasing
         }
     }
 }
-
