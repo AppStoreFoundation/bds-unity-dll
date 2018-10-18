@@ -137,13 +137,13 @@ namespace Appcoins.Purchasing
             return reason;
         }
 
-        public string GetAAPCPriceStringForSKU(string skuID) {
+        public string GetAPPCPriceStringForSKU(string skuID) {
             Debug.Log("Getting price for sku " + skuID);
-            string price = instance.Call<string>("getAAPCPriceStringForSKU", skuID);
+            string price = instance.Call<string>("getAPPCPriceStringForSKU", skuID);
 
 
             Debug.Log("Price for sku " + skuID + " is " + price);
-            return price + " AAPC";
+            return price + " APPC";
         }
 
         public void InitiatePurchase(AppcoinsProduct prod, string payload)
