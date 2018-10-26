@@ -50,7 +50,7 @@ namespace Appcoins.Purchasing
         private bool _useAdsSDK = false;
 
         //[SerializeField]
-        private bool _useMainNet = false;
+        private bool _useMainNet = true;
 
         private AndroidJavaClass _class;
         private AndroidJavaObject instance { get { return _class.GetStatic<AndroidJavaObject>("instance"); } }

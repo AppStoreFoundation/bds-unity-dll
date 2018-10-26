@@ -16,7 +16,13 @@ namespace Appcoins.Purchasing
                                         string unityVersion)
         {
             string url = "http://ws75.aptoide.com/api/7/user/addEvent/action=CLICK/context=UNITY/name=PURCHASE_INTENT";
-            string json = "{ \"aptoide_vercode\": " + verCode + ", \"aptoide_package\": \"" + pluginPackage + "\", \"data\": { \"purchase\": { \"package_name\":\"" + appPackage + "\", \"sku\":\"" + sku + "\", \"value\": " + value + "}, \"wallet_installed\": " + hasWallet.ToString().ToLower() + ", \"unity_version\": \"" + unityVersion + "\"} }";
+            string json = "{ \"aptoide_vercode\": " + verCode + ", \"aptoide_package\": \"" + pluginPackage + "\", \"data\": { \"purchase\": { \"package_name\":\"" + appPackage + "\", \"sku\":\"" + sku + "\"";
+
+            if (value != "ERROR") {
+                json += ", \"value\": " + value;
+            }
+
+            json += "}, \"wallet_installed\": " + hasWallet.ToString().ToLower() + ", \"unity_version\": \"" + unityVersion + "\"} }";
       
             PostDataToURLWithHeadersDict(url, json);
         }
