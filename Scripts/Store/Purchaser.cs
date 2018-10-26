@@ -30,6 +30,7 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
     private string _pendingPurchaseSkuID;
 
     private VersionReporter _versionReporter;
+    private EventLogger _logger;
 
     void Awake()
     {
@@ -68,14 +69,14 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
             return;
         }
 
+        _logger = gameObject.AddComponent<EventLogger>();
+
         SetStatus("UnityPurchasing initializing.");
         if (Application.isEditor) {
             OnInitialized(null);
         } else {
             _appcoinsPurchasing.Initialize(this, _builder);    
         }
-
-
     }
 
     void SetStatus(string status) {
@@ -98,6 +99,11 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
             ProcessPurchase(product);
 
         } else {
+            //Fire event
+            //Remove APPC from the price string
+            string priceStr = _appcoinsPurchasing.GetAPPCPriceStringForSKU(productId).Replace(" APPC", "");
+            FireBuyIntentEvent(productId, priceStr);
+
             //Check if wallet is installed
             if (!_appcoinsPurchasing.HasWalletInstalled())
             {
@@ -168,6 +174,16 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
     {
     }
 
+    void FireBuyIntentEvent(string sku, string value) {
+        _logger.LogBuyIntent(
+            _versionReporter.GetPluginVerCodeStr(),
+            _versionReporter.GetPluginPackageName(),
+            Application.identifier,
+            sku,
+            value,
+            _appcoinsPurchasing.HasWalletInstalled(),
+            _versionReporter.GetUnityVersionStr());
+    }
 
     //
     // --- IAppcoinsStoreListener

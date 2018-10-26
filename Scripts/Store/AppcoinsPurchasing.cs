@@ -45,9 +45,12 @@ namespace Appcoins.Purchasing
 
         [SerializeField]
         private bool _shouldLog;
-         
+
+        [SerializeField]
+        private bool _useAdsSDK = false;
+
         //[SerializeField]
-        private bool _useMainNet = true;
+        private bool _useMainNet = false;
 
         private AndroidJavaClass _class;
         private AndroidJavaObject instance { get { return _class.GetStatic<AndroidJavaObject>("instance"); } }
@@ -94,7 +97,8 @@ namespace Appcoins.Purchasing
             _class.CallStatic("setDeveloperAddress", _developerWalletAddress);
             _class.CallStatic("setDeveloperBDSPublicKey", _developerBDSPublicKey);
             _class.CallStatic("setLogging", _shouldLog);
-            _class.CallStatic("setUseMainNet", _useMainNet);
+            _class.CallStatic("setUseMainNet", _useMainNet); 
+            _class.CallStatic("setUseAdsSDK", _useAdsSDK);
 
             //start sdk
             _class.CallStatic("start");
@@ -273,6 +277,15 @@ namespace Appcoins.Purchasing
 
         public bool OwnsProduct(string skuID) {
             return instance.Call<bool>("OwnsProduct", skuID);
+        }
+
+        public bool UsesMainNet() {
+            return _useMainNet;
+        }
+
+        public bool UsesAdsSDK()
+        {
+            return _useAdsSDK;
         }
     }
 }
