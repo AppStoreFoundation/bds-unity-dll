@@ -178,7 +178,7 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         _logger.LogBuyIntent(
             _versionReporter.GetPluginVerCodeStr(),
             _versionReporter.GetPluginPackageName(),
-            Application.identifier,
+            _appcoinsPurchasing.GetBundleIdentifier(),
             sku,
             value,
             _appcoinsPurchasing.HasWalletInstalled(),

@@ -47,7 +47,7 @@ namespace Appcoins.Purchasing
         private bool _shouldLog;
 
         [SerializeField]
-        private bool _useAdsSDK = false;
+        private bool _useAdsSDK = true;
 
         //[SerializeField]
         private bool _useMainNet = true;
@@ -99,6 +99,9 @@ namespace Appcoins.Purchasing
             _class.CallStatic("setLogging", _shouldLog);
             _class.CallStatic("setUseMainNet", _useMainNet); 
             _class.CallStatic("setUseAdsSDK", _useAdsSDK);
+
+
+            Debug.Log("the bundle is " + GetBundleIdentifier());
 
             //start sdk
             _class.CallStatic("start");
@@ -286,6 +289,10 @@ namespace Appcoins.Purchasing
         public bool UsesAdsSDK()
         {
             return _useAdsSDK;
+        }
+
+        public string GetBundleIdentifier() {
+            return _class.CallStatic<string>("getPackageName");
         }
     }
 }
