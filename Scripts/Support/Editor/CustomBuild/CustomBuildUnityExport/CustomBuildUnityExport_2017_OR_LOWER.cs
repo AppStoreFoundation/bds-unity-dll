@@ -7,9 +7,10 @@ public class CustomBuildUnityExport2017OrLower : CustomBuildUnityExport
     //private string rightDllLoc;
     //private string tempDllLoc;
 
-    public CustomBuildUnityExport2017OrLower(BuildTarget bT, BuildTargetGroup bTG, 
-                                     BuildOptions bO, 
-                                     ICustomBuildTarget target) :
+    public CustomBuildUnityExport2017OrLower(BuildTarget bT, 
+                                             BuildTargetGroup bTG, 
+                                             BuildOptions bO, 
+                                             ICustomBuildTarget target) :
         base(bT, bTG, bO, target) {}
 
     public override void UnityExport(BuildStage stage, string[] scenesPath,
