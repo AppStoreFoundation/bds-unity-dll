@@ -69,6 +69,7 @@
     <Compile Include="..\Scripts\Support\EventLogger.cs">
       <Link>EventLogger.cs</Link>
     </Compile>
+    <Compile Include="Store\PrefapUpdater.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
