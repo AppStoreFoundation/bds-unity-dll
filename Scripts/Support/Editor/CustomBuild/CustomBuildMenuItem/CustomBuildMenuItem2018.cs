@@ -5,6 +5,7 @@ using System;
 
 public static class CustomBuildMenuItem
 {
+
     [MenuItem("AppCoins/Android Custom Build")]
 
     public static void AndroidCustomBuild()
@@ -39,17 +40,14 @@ public static class CustomBuildMenuItem
         c.RunProcess();
     }
 
-    [MenuItem("AppCoins/Setup")]
-
     public static void SetupBuild(){
-
+    
         CustomBuildSetupEnv d =
             new CustomBuildAndroidSetupEnv(new BDSAppcoinsGameObject());
 
+        //Start setup and inform the developer that it has successfully been done
         d.Setup();
         Debug.Log("Setup has started");
-
-
         EditorUtility.DisplayDialog("Setup", "Setup runned successfully!", "Ok");
 
     }
