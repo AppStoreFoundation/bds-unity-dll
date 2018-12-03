@@ -114,7 +114,7 @@ namespace Appcoins.Purchasing
         }
 
         public bool HasWalletInstalled() {
-            return _class.CallStatic<bool>("hasWalletInstalled");
+            return _class.CallStatic<bool>("hasSpecificWalletInstalled");
         }
 
         public void PromptWalletInstall() {
