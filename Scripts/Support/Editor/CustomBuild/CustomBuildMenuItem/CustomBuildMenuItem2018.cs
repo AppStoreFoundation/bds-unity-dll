@@ -40,6 +40,7 @@ public static class CustomBuildMenuItem
         c.RunProcess();
     }
 
+    [MenuItem("AppCoins/Setup")]
     public static void SetupBuild(){
     
         CustomBuildSetupEnv d =
