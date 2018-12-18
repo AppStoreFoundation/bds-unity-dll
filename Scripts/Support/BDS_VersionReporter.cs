@@ -5,10 +5,11 @@ namespace Appcoins.Purchasing
     public class BDSVersionReporter : VersionReporter{
 
         //Each time a new verCode is added comment the previous one with the release date   
-        private int _verCode = 5;
+        private int _verCode = 6; //1.0.4
+        //private int _verCode = 5; //1.0.3
 
         public override string GetPluginVersionStr() {
-            return "1.0.3";
+            return "1.0.4";
         }
 
         public override string GetPluginVerCodeStr()

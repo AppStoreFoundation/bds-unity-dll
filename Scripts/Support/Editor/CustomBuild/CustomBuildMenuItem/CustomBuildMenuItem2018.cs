@@ -40,6 +40,14 @@ public static class CustomBuildMenuItem
         c.RunProcess();
     }
 
+
+    //NOTE (nuno.monteiro):
+    //This menu item has to exist. The reason behind this is because this is the only way
+    //for this method to be accessed via code on a non-editor script. The way we do this 
+    //is by calling EditorApplication.ExecuteMenuItem("AppCoins/Setup");
+    //This whole mechanism exists so that every change the user makes on the prefab is immediately
+    //registered on the mainTemplate.gradle, before the user building the app. This in turn allows 
+    //the user to use Unity's native build and run process instead of our own custom build window
     [MenuItem("AppCoins/Setup")]
     public static void SetupBuild(){
     
@@ -48,9 +56,8 @@ public static class CustomBuildMenuItem
 
         //Start setup and inform the developer that it has successfully been done
         d.Setup();
-        Debug.Log("Setup has started");
-        EditorUtility.DisplayDialog("Setup", "Setup runned successfully!", "Ok");
 
+        //EditorUtility.DisplayDialog("Setup", "Setup runned successfully!", "Ok");
     }
 
     
