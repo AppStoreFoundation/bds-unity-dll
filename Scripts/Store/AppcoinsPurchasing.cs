@@ -55,7 +55,7 @@ namespace Appcoins.Purchasing
         private AndroidJavaClass _class;
         private AndroidJavaObject instance { get { return _class.GetStatic<AndroidJavaObject>("instance"); } }
 
-        private const string JAVA_CLASS_NAME = "com.aptoide.appcoinsunity.UnityAppcoins";
+        private const string JAVA_CLASS_NAME = "com.aptoide.iabexample.UnityAppcoins";
 
         // Only class that can comunicate with AppcoinsPurchasing
         private AppcoinsStoreController _controller;
@@ -114,7 +114,7 @@ namespace Appcoins.Purchasing
         }
 
         public bool HasWalletInstalled() {
-            return _class.CallStatic<bool>("hasWalletInstalled");
+            return _class.CallStatic<bool>("hasSpecificWalletInstalled");
         }
 
         public void PromptWalletInstall() {
