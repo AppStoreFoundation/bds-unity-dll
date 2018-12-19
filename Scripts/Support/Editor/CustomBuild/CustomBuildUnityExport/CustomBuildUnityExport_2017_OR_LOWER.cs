@@ -28,6 +28,11 @@ public class CustomBuildUnityExport2017OrLower : CustomBuildUnityExport
         //File.Move(rightDllLoc, tempDllLoc);
         //AssetDatabase.Refresh();
 
+        if (EditorUserBuildSettings.development)
+        {
+            buildOptions = buildOptions | BuildOptions.Development | BuildOptions.AllowDebugging;
+        }
+
         string s = BuildPipeline.BuildPlayer(scenesPath, containerPath, 
                                              buildTarget,
                                              buildOptions).ToString();

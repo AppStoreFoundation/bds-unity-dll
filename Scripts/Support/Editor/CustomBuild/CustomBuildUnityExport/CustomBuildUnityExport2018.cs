@@ -17,6 +17,13 @@ public class CustomBuildUnityExport2018 : CustomBuildUnityExport
         EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup,
                                                         buildTarget);
 
+
+        if(EditorUserBuildSettings.development)
+        {
+            buildOptions = buildOptions| BuildOptions.Development | BuildOptions.AllowDebugging;
+        }
+
+
         UnityEditor.Build.Reporting.BuildReport error = 
             BuildPipeline.BuildPlayer(scenesPath, containerPath, buildTarget, 
                                       buildOptions);
@@ -28,6 +35,8 @@ public class CustomBuildUnityExport2018 : CustomBuildUnityExport
             error.summary.result == 
                 UnityEditor.Build.Reporting.BuildResult.Cancelled
         );
+
+
 
         if (fail)
         {
