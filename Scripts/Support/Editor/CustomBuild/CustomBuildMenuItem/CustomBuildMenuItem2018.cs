@@ -40,15 +40,6 @@ public static class CustomBuildMenuItem
         c.RunProcess();
     }
 
-
-    //NOTE (nuno.monteiro):
-    //This menu item has to exist. The reason behind this is because this is the only way
-    //for this method to be accessed via code on a non-editor script. The way we do this 
-    //is by calling EditorApplication.ExecuteMenuItem("AppCoins/Setup");
-    //This whole mechanism exists so that every change the user makes on the prefab is immediately
-    //registered on the mainTemplate.gradle, before the user building the app. This in turn allows 
-    //the user to use Unity's native build and run process instead of our own custom build window
-    [MenuItem("AppCoins/Setup")]
     public static void SetupBuild(){
     
         CustomBuildSetupEnv d =
@@ -56,30 +47,7 @@ public static class CustomBuildMenuItem
 
         //Start setup and inform the developer that it has successfully been done
         d.Setup();
-
-        //EditorUtility.DisplayDialog("Setup", "Setup runned successfully!", "Ok");
     }
-
-    
-
-    //private static CustomBuildUnityExport GetCustomBuildUnityExport5_6()
-    //{
-    //    BuildTarget bT = BuildTarget.Android;
-    //    BuildOptions bO = BuildOptions.AcceptExternalModificationsToPlayer;
-    //    ICustomBuildTarget target = new CustomBuildTargetAndroid();
-
-    //    return new CustomBuildUnityExport5_6(bT, bO, target);
-    //}
-
-    //private static CustomBuildUnityExport GetCustomBuildUnityExport2017()
-    //{
-    //    BuildTarget bT = BuildTarget.Android;
-    //    BuildTargetGroup bG = BuildTargetGroup.Android;
-    //    BuildOptions bO = BuildOptions.AcceptExternalModificationsToPlayer;
-    //    ICustomBuildTarget target = new CustomBuildTargetAndroid();
-
-    //    return new CustomBuildUnityExport2017(bT, bO, bG, target);
-    //}
 
     private static CustomBuildUnityExport GetCustomBuildUnityExport2018()
     {
