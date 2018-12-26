@@ -46,7 +46,7 @@ public class BDSAppcoinsGameObject : AppcoinsGameObject
                                mainTemplateContainers, newLine);
 
         //Handle Debug network flag
-        newLine = debugEnabledNewLine.Replace(toReplace, (!bdsGameObject.UsesMainNet()).ToString().ToLower());
+        newLine = debugEnabledNewLine.Replace(toReplace, (bdsGameObject.UsesLog()).ToString().ToLower());
         Tools.ChangeLineInFile(mainTemplatePath, mainTemplateDEBUGVarName,
                                mainTemplateContainers, newLine);
     }
