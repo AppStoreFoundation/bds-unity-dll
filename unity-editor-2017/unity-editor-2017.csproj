@@ -68,9 +68,6 @@
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs</Link>
     </Compile>
-    <Compile Include="..\Scripts\Support\Editor\Migration\MigrationHelper.cs">
-      <Link>Support\Editor\Migration\MigrationHelper.cs</Link>
-    </Compile>
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport_2017_OR_LOWER.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\CustomBuildUnityExport_2017_OR_LOWER.cs</Link>
     </Compile>
