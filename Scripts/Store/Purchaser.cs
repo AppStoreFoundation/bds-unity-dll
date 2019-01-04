@@ -115,6 +115,9 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
                 return;
             }
 
+            //Check wallet version
+            _appcoinsPurchasing.CheckWalletVersion();
+
             // If Purchasing has been initialized ...
             if (IsInitialized())
             {

@@ -120,6 +120,11 @@ namespace Appcoins.Purchasing
             return _class.CallStatic<bool>("hasSpecificWalletInstalled");
         }
 
+        public void CheckWalletVersion()
+        {
+            _class.CallStatic("checkWalletVersion");
+        }
+
         public void PromptWalletInstall()
         {
             _class.CallStatic("promptWalletInstall");
