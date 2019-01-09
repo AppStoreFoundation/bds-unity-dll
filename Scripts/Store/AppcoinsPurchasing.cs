@@ -156,12 +156,32 @@ namespace Appcoins.Purchasing
 
         public string GetAPPCPriceStringForSKU(string skuID)
         {
-            Debug.Log("Getting price for sku " + skuID);
+            Debug.Log("Getting appc price for sku " + skuID);
             string price = instance.Call<string>("getAPPCPriceStringForSKU", skuID);
 
 
             Debug.Log("Price for sku " + skuID + " is " + price);
             return price + " APPC";
+        }
+
+        public string GetFiatPriceStringForSKU(string skuID)
+        {
+            Debug.Log("Getting fiat price for sku " + skuID);
+            string price = instance.Call<string>("getFiatPriceStringForSKU", skuID);
+
+
+            Debug.Log("Price for sku " + skuID + " is " + price);
+            return price;
+        }
+
+        public string GetFIATCurrencyCodeForSKU(string skuID)
+        {
+            Debug.Log("Getting fiat currency code for " + skuID);
+            string code = instance.Call<string>("getFIATCurrencyCodeForSKU", skuID);
+
+
+            Debug.Log("The currency code for " + skuID + " price is " + code);
+            return code;
         }
 
         public void InitiatePurchase(AppcoinsProduct prod, string payload)
