@@ -6,7 +6,7 @@ public static class CustomBuildMenuItem
     [MenuItem("AppCoins/Android Custom Build")]
     public static void AndroidCustomBuild()
     {
-        CustomBuildSetupEnv customBuildSetup = 
+        CustomBuildSetupEnv customBuildSetup =
             new CustomBuildAndroidSetupEnv(new BDSAppcoinsGameObject());
 
         CustomBuildWindow customBuildWindow =
@@ -15,13 +15,13 @@ public static class CustomBuildMenuItem
         CustomBuildUnityExport customBuildUnityExport =
             GetCustomBuildUnityExport2017();
 
-        CustomBuildProjectBuild customBuildProjectBuild = 
+        CustomBuildProjectBuild customBuildProjectBuild =
             new CustomBuildGradleProjectBuild();
 
-        CustomBuildProjectInstall customBuildProjectInstall = 
+        CustomBuildProjectInstall customBuildProjectInstall =
             new CustomBuildAdbProjectInstall();
 
-        CustomBuildProjectRun customBuildProjectRun = 
+        CustomBuildProjectRun customBuildProjectRun =
             new CustomBuildAdbProjectRun();
 
         CustomBuildErrorTitles eT = new CustomBuildAndroidErrorTitles();
@@ -34,7 +34,9 @@ public static class CustomBuildMenuItem
                                         eT
                                        );
         c.RunProcess();
+
     }
+
 
     //private static CustomBuildUnityExport GetCustomBuildUnityExport5_6()
     //{
@@ -64,4 +66,13 @@ public static class CustomBuildMenuItem
 
     //    return new CustomBuildUnityExport2018(bT, bO, bG, target);
     //}
+
+
+    [MenuItem("AppCoins/Parameters")]
+
+    public static void ParameterWindow()
+    {
+        ParameterWindow parameter = new ParameterWindow();
+        EditorWindow.GetWindow(typeof(ParameterWindow));
+    }
 }
