@@ -40,6 +40,16 @@ public static class CustomBuildMenuItem
         c.RunProcess();
     }
 
+    [MenuItem("AppCoins/AppCoins Plugin Settings")]
+    public static void ParameterWindow()
+    {
+        //Get Inspector Window type to allow docking our window right next to it
+        Type inspectorType = Type.GetType("UnityEditor.InspectorWindow,UnityEditor.dll");
+        Type[] docks = new Type[1];
+        docks[0] = inspectorType;
+        EditorWindow.GetWindow<AppcoinsSettingsWindow>("AppCoins Plugin Settings",true,docks);
+    }
+
     public static void SetupBuild(){
     
         CustomBuildSetupEnv d =

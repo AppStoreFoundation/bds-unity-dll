@@ -10,7 +10,7 @@ public class PurchaseEvent : UnityEvent<AppcoinsProduct> {
 }
 
 // Deriving the Purchaser class from IStoreListener enables it to receive messages from Unity Purchasing.
-[RequireComponent(typeof(AppcoinsPurchasing))]
+//[RequireComponent(typeof(AppcoinsPurchasing))]
 public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 {
     public UnityEvent onInitializeSuccess;
@@ -32,8 +32,7 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
     private VersionReporter _versionReporter;
     private EventLogger _logger;
 
-    void Awake()
-    {
+    void Awake() {
         DontDestroyOnLoad(this.gameObject);
 
         onInitializeSuccess = new UnityEvent();
@@ -44,14 +43,15 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
         _builder = new AppcoinsConfigurationBuilder();
 
-        _versionReporter = GetComponent<VersionReporter>();
+        _appcoinsPurchasing = gameObject.AddComponent<AppcoinsPurchasing>();
+
+        _versionReporter = gameObject.AddComponent<BDSVersionReporter>();
         if (_versionReporter == null)
         {
+            //Debug.LogError("Failed initializing! Plugin prefab is missing BDS VersionReporter. Please use the unmodified version of the prefab.");
             Debug.LogError("Failed initializing! Plugin prefab is missing BDS VersionReporter. Please use the unmodified version of the prefab.");
             return;
         }
-
-        _versionReporter.LogVersionDetails();
     }
 
     public void AddProduct(string skuID, AppcoinsProductType type) {
@@ -60,14 +60,14 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
     public void InitializePurchasing()
     {
-        _appcoinsPurchasing = GetComponent<AppcoinsPurchasing>();
-
         // If we have already connected to Purchasing ...
         if (IsInitialized())
         {
             // ... we are done here.
             return;
         }
+
+        _versionReporter.LogVersionDetails();
 
         _logger = gameObject.AddComponent<EventLogger>();
 
@@ -77,6 +77,11 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         } else {
             _appcoinsPurchasing.Initialize(this, _builder);    
         }
+    }
+
+    public void SetStatusLabel(Text statusLabel)
+    {
+        _statusText = statusLabel;
     }
 
     void SetStatus(string status) {
