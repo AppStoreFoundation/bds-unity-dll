@@ -32,7 +32,14 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
     private VersionReporter _versionReporter;
     private EventLogger _logger;
 
-    void Awake() {
+    public static Purchaser Create() {
+        GameObject appcoinsPurchasing = new GameObject();
+        appcoinsPurchasing.name = "AppcoinsPurchasing";
+        return appcoinsPurchasing.AddComponent<Purchaser>();
+    }
+
+    void Awake()
+    {
         DontDestroyOnLoad(this.gameObject);
 
         onInitializeSuccess = new UnityEvent();
@@ -54,7 +61,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         }
     }
 
-    public void AddProduct(string skuID, AppcoinsProductType type) {
+    public void AddProduct(string skuID, AppcoinsProductType type)
+    {
         _builder.AddProduct(skuID, type);
     }
 
@@ -72,10 +80,13 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         _logger = gameObject.AddComponent<EventLogger>();
 
         SetStatus("UnityPurchasing initializing.");
-        if (Application.isEditor) {
+        if (Application.isEditor)
+        {
             OnInitialized(null);
-        } else {
-            _appcoinsPurchasing.Initialize(this, _builder);    
+        }
+        else
+        {
+            _appcoinsPurchasing.Initialize(this, _builder);
         }
     }
 
@@ -84,7 +95,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         _statusText = statusLabel;
     }
 
-    void SetStatus(string status) {
+    void SetStatus(string status)
+    {
         if (_statusText != null)
             _statusText.text = status;
         Debug.Log(status);
@@ -98,12 +110,15 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
     public void BuyProductID(string productId)
     {
-        if (Application.isEditor) {
+        if (Application.isEditor)
+        {
             AppcoinsProduct product = new AppcoinsProduct();
             product.skuID = productId;
             ProcessPurchase(product);
 
-        } else {
+        }
+        else
+        {
             //Fire event
             //Remove APPC from the price string
             string priceStr = _appcoinsPurchasing.GetAPPCPriceStringForSKU(productId).Replace(" APPC", "");
@@ -169,7 +184,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
     }
 
-    bool OwnsProduct(string skuID) {
+    bool OwnsProduct(string skuID)
+    {
         return _appcoinsPurchasing.OwnsProduct(skuID);
     }
 
@@ -179,7 +195,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
     {
     }
 
-    void FireBuyIntentEvent(string sku, string value) {
+    void FireBuyIntentEvent(string sku, string value)
+    {
         _logger.LogBuyIntent(
             _versionReporter.GetPluginVerCodeStr(),
             _versionReporter.GetPluginPackageName(),
@@ -204,7 +221,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         // Overall Purchasing system, configured with products for this application.
         m_StoreController = controller;
 
-        if (_pendingPurchaseSkuID != null && !_pendingPurchaseSkuID.Equals("")) {
+        if (_pendingPurchaseSkuID != null && !_pendingPurchaseSkuID.Equals(""))
+        {
             SetStatus("OnInitialized: PASS! Resuming pending purchase of: " + _pendingPurchaseSkuID);
             BuyProductID(_pendingPurchaseSkuID);
             _pendingPurchaseSkuID = "";
@@ -238,4 +256,26 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         // this reason with the user to guide their troubleshooting actions.
         SetStatus(string.Format("OnPurchaseFailed: FAIL.\nProduct: '{0}',\nPurchaseFailureReason: {1}", (product != null ? product.skuID : "none"), failureReason));
     }
+
+    #region AppcoinsPurchasing facilitators
+    public void SetupCustomValidator(IPayloadValidator customValidator) {
+        if (_appcoinsPurchasing == null)
+        {
+            Debug.LogError("ERROR! No appcoinsPurchasing object when trying to setup custom validator");
+            return;
+        }
+
+        _appcoinsPurchasing.SetupCustomValidator(customValidator);
+    }
+        
+
+    public string GetAPPCPriceStringForSKU(string skuID) {
+        if (_appcoinsPurchasing == null) {
+            Debug.LogError("ERROR! No appcoinsPurchasing object when trying to get APPC value");
+            return "ERROR";
+        }
+            
+        return _appcoinsPurchasing.GetAPPCPriceStringForSKU(skuID);
+    }
+#endregion
 }
