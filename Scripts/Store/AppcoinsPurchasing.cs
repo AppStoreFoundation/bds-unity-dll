@@ -96,8 +96,6 @@ namespace Appcoins.Purchasing
             _class = new AndroidJavaClass(JAVA_CLASS_NAME);
 
             //Setup sdk
-            _class.CallStatic("setDeveloperAddress", _developerWalletAddress);
-            _class.CallStatic("setDeveloperBDSPublicKey", _developerBDSPublicKey);
             _class.CallStatic("setLogging", _shouldLog);
             _class.CallStatic("setUseMainNet", _useMainNet);
             _class.CallStatic("setUseAdsSDK", _useAdsSDK);
@@ -158,7 +156,6 @@ namespace Appcoins.Purchasing
         {
             Debug.Log("Getting appc price for sku " + skuID);
             string price = instance.Call<string>("getAPPCPriceStringForSKU", skuID);
-
 
             Debug.Log("Price for sku " + skuID + " is " + price);
             return price + " APPC";
