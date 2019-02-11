@@ -171,10 +171,10 @@ namespace Appcoins.Purchasing
             return price;
         }
 
-        public string GetFIATCurrencyCodeForSKU(string skuID)
+        public string GetFiatCurrencyCodeForSKU(string skuID)
         {
             Debug.Log("Getting fiat currency code for " + skuID);
-            string code = instance.Call<string>("getFIATCurrencyCodeForSKU", skuID);
+            string code = instance.Call<string>("getFiatCurrencyCodeForSKU", skuID);
 
 
             Debug.Log("The currency code for " + skuID + " price is " + code);

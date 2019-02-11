@@ -277,5 +277,29 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
             
         return _appcoinsPurchasing.GetAPPCPriceStringForSKU(skuID);
     }
+
+    public string GetFiatCurrencyCodeForSKU(string skuID)
+    {
+        if (_appcoinsPurchasing == null)
+        {
+            Debug.LogError("ERROR! No appcoinsPurchasing object when trying to get Currency code value");
+            return "ERROR";
+        }
+
+        return _appcoinsPurchasing.GetFiatCurrencyCodeForSKU(skuID);
+    }
+
+    public string GetFiatPriceStringForSKU(string skuID)
+    {
+        if (_appcoinsPurchasing == null)
+        {
+            Debug.LogError("ERROR! No appcoinsPurchasing object when trying to get fiat value");
+            return "ERROR";
+        }
+
+        return _appcoinsPurchasing.GetFiatPriceStringForSKU(skuID);
+    }
+
+
 #endregion
 }
