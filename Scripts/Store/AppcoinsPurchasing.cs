@@ -158,7 +158,7 @@ namespace Appcoins.Purchasing
             string price = instance.Call<string>("getAPPCPriceStringForSKU", skuID);
 
             Debug.Log("Price for sku " + skuID + " is " + price);
-            return price + " APPC";
+            return price;
         }
 
         public string GetFiatPriceStringForSKU(string skuID)
