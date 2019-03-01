@@ -5,7 +5,9 @@ using System;
 
 public static class CustomBuildMenuItem
 {
+
     [MenuItem("AppCoins/Android Custom Build")]
+
     public static void AndroidCustomBuild()
     {
         CustomBuildSetupEnv customBuildSetup = 
@@ -38,24 +40,24 @@ public static class CustomBuildMenuItem
         c.RunProcess();
     }
 
-    //private static CustomBuildUnityExport GetCustomBuildUnityExport5_6()
-    //{
-    //    BuildTarget bT = BuildTarget.Android;
-    //    BuildOptions bO = BuildOptions.AcceptExternalModificationsToPlayer;
-    //    ICustomBuildTarget target = new CustomBuildTargetAndroid();
+    [MenuItem("AppCoins/AppCoins Plugin Settings")]
+    public static void ParameterWindow()
+    {
+        //Get Inspector Window type to allow docking our window right next to it
+        Type inspectorType = Type.GetType("UnityEditor.InspectorWindow,UnityEditor.dll");
+        Type[] docks = new Type[1];
+        docks[0] = inspectorType;
+        EditorWindow.GetWindow<AppcoinsSettingsWindow>("AppCoins Plugin Settings",true,docks);
+    }
 
-    //    return new CustomBuildUnityExport5_6(bT, bO, target);
-    //}
+    public static void SetupBuild(){
+    
+        CustomBuildSetupEnv d =
+            new CustomBuildAndroidSetupEnv(new BDSAppcoinsGameObject());
 
-    //private static CustomBuildUnityExport GetCustomBuildUnityExport2017()
-    //{
-    //    BuildTarget bT = BuildTarget.Android;
-    //    BuildTargetGroup bG = BuildTargetGroup.Android;
-    //    BuildOptions bO = BuildOptions.AcceptExternalModificationsToPlayer;
-    //    ICustomBuildTarget target = new CustomBuildTargetAndroid();
-
-    //    return new CustomBuildUnityExport2017(bT, bO, bG, target);
-    //}
+        //Start setup and inform the developer that it has successfully been done
+        d.Setup();
+    }
 
     private static CustomBuildUnityExport GetCustomBuildUnityExport2018()
     {

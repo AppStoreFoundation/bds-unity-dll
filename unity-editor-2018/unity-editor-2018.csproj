@@ -65,12 +65,15 @@
     <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs">
       <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\AppcoinsGameObject\BDSAppcoinsGameObject.cs</Link>
     </Compile>
-    <Compile Include="..\..\asf-unity-dll\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport2018.cs">
-      <Link>Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport2018.cs</Link>
+    <Compile Include="..\Scripts\Support\Editor\CustomBuild\CustomBuildUnityExport\CustomBuildUnityExport2018.cs">
+      <Link>Support\Editor\CustomBuild\CustomBuildSetupEnv\CustomBuildUnityExport2018.cs</Link>
     </Compile>
-    <Compile Include="..\Scripts\Support\Editor\Migration\MigrationHelper.cs">
-      <Link>Support\Editor\Migration\MigrationHelper.cs</Link>
+    <Compile Include="..\Scripts\Support\PrefabUpdater.cs">
+      <Link>Support\Editor\PrefabUpdater.cs</Link>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Support\Editor\CustomBuild\CustomBuildUnityExport\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,7 +10,7 @@ public class PurchaseEvent : UnityEvent<AppcoinsProduct> {
 }
 
 // Deriving the Purchaser class from IStoreListener enables it to receive messages from Unity Purchasing.
-[RequireComponent(typeof(AppcoinsPurchasing))]
+//[RequireComponent(typeof(AppcoinsPurchasing))]
 public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 {
     public UnityEvent onInitializeSuccess;
@@ -29,6 +29,15 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
     private string _pendingPurchaseSkuID;
 
+    private VersionReporter _versionReporter;
+    private EventLogger _logger;
+
+    public static Purchaser Create() {
+        GameObject appcoinsPurchasing = new GameObject();
+        appcoinsPurchasing.name = "AppcoinsPurchasing";
+        return appcoinsPurchasing.AddComponent<Purchaser>();
+    }
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -40,16 +49,25 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         onPurchaseFailed = new PurchaseEvent();
 
         _builder = new AppcoinsConfigurationBuilder();
+
+        _appcoinsPurchasing = gameObject.AddComponent<AppcoinsPurchasing>();
+
+        _versionReporter = gameObject.AddComponent<BDSVersionReporter>();
+        if (_versionReporter == null)
+        {
+            //Debug.LogError("Failed initializing! Plugin prefab is missing BDS VersionReporter. Please use the unmodified version of the prefab.");
+            Debug.LogError("Failed initializing! Plugin prefab is missing BDS VersionReporter. Please use the unmodified version of the prefab.");
+            return;
+        }
     }
 
-    public void AddProduct(string skuID, AppcoinsProductType type) {
+    public void AddProduct(string skuID, AppcoinsProductType type)
+    {
         _builder.AddProduct(skuID, type);
     }
 
     public void InitializePurchasing()
     {
-        _appcoinsPurchasing = GetComponent<AppcoinsPurchasing>();
-
         // If we have already connected to Purchasing ...
         if (IsInitialized())
         {
@@ -57,17 +75,28 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
             return;
         }
 
+        _versionReporter.LogVersionDetails();
+
+        _logger = gameObject.AddComponent<EventLogger>();
+
         SetStatus("UnityPurchasing initializing.");
-        if (Application.isEditor) {
+        if (Application.isEditor)
+        {
             OnInitialized(null);
-        } else {
-            _appcoinsPurchasing.Initialize(this, _builder);    
         }
-
-
+        else
+        {
+            _appcoinsPurchasing.Initialize(this, _builder);
+        }
     }
 
-    void SetStatus(string status) {
+    public void SetStatusLabel(Text statusLabel)
+    {
+        _statusText = statusLabel;
+    }
+
+    void SetStatus(string status)
+    {
         if (_statusText != null)
             _statusText.text = status;
         Debug.Log(status);
@@ -81,12 +110,20 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
     public void BuyProductID(string productId)
     {
-        if (Application.isEditor) {
+        if (Application.isEditor)
+        {
             AppcoinsProduct product = new AppcoinsProduct();
             product.skuID = productId;
             ProcessPurchase(product);
 
-        } else {
+        }
+        else
+        {
+            //Fire event
+            //Remove APPC from the price string
+            string priceStr = _appcoinsPurchasing.GetAPPCPriceStringForSKU(productId).Replace(" APPC", "");
+            FireBuyIntentEvent(productId, priceStr);
+
             //Check if wallet is installed
             if (!_appcoinsPurchasing.HasWalletInstalled())
             {
@@ -147,7 +184,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
 
     }
 
-    bool OwnsProduct(string skuID) {
+    bool OwnsProduct(string skuID)
+    {
         return _appcoinsPurchasing.OwnsProduct(skuID);
     }
 
@@ -157,6 +195,17 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
     {
     }
 
+    void FireBuyIntentEvent(string sku, string value)
+    {
+        _logger.LogBuyIntent(
+            _versionReporter.GetPluginVerCodeStr(),
+            _versionReporter.GetPluginPackageName(),
+            _appcoinsPurchasing.GetBundleIdentifier(),
+            sku,
+            value,
+            _appcoinsPurchasing.HasWalletInstalled(),
+            _versionReporter.GetUnityVersionStr());
+    }
 
     //
     // --- IAppcoinsStoreListener
@@ -172,7 +221,8 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         // Overall Purchasing system, configured with products for this application.
         m_StoreController = controller;
 
-        if (_pendingPurchaseSkuID != null && !_pendingPurchaseSkuID.Equals("")) {
+        if (_pendingPurchaseSkuID != null && !_pendingPurchaseSkuID.Equals(""))
+        {
             SetStatus("OnInitialized: PASS! Resuming pending purchase of: " + _pendingPurchaseSkuID);
             BuyProductID(_pendingPurchaseSkuID);
             _pendingPurchaseSkuID = "";
@@ -206,4 +256,50 @@ public class Purchaser : MonoBehaviour, IAppcoinsStoreListener
         // this reason with the user to guide their troubleshooting actions.
         SetStatus(string.Format("OnPurchaseFailed: FAIL.\nProduct: '{0}',\nPurchaseFailureReason: {1}", (product != null ? product.skuID : "none"), failureReason));
     }
+
+    #region AppcoinsPurchasing facilitators
+    public void SetupCustomValidator(IPayloadValidator customValidator) {
+        if (_appcoinsPurchasing == null)
+        {
+            Debug.LogError("ERROR! No appcoinsPurchasing object when trying to setup custom validator");
+            return;
+        }
+
+        _appcoinsPurchasing.SetupCustomValidator(customValidator);
+    }
+        
+
+    public string GetAPPCPriceStringForSKU(string skuID) {
+        if (_appcoinsPurchasing == null) {
+            Debug.LogError("ERROR! No appcoinsPurchasing object when trying to get APPC value");
+            return "ERROR";
+        }
+            
+        return _appcoinsPurchasing.GetAPPCPriceStringForSKU(skuID);
+    }
+
+    public string GetFiatCurrencyCodeForSKU(string skuID)
+    {
+        if (_appcoinsPurchasing == null)
+        {
+            Debug.LogError("ERROR! No appcoinsPurchasing object when trying to get Currency code value");
+            return "ERROR";
+        }
+
+        return _appcoinsPurchasing.GetFiatCurrencyCodeForSKU(skuID);
+    }
+
+    public string GetFiatPriceStringForSKU(string skuID)
+    {
+        if (_appcoinsPurchasing == null)
+        {
+            Debug.LogError("ERROR! No appcoinsPurchasing object when trying to get fiat value");
+            return "ERROR";
+        }
+
+        return _appcoinsPurchasing.GetFiatPriceStringForSKU(skuID);
+    }
+
+
+#endregion
 }
